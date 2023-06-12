@@ -6,6 +6,7 @@ const { token } = require('./config.json');
 
 //Identifying client
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+module.exports.client = client;
 
 //Dynamic commands
 client.commands = new Collection();
