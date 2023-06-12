@@ -1,5 +1,6 @@
 const index = require("../index.js");
 const client = index.client;
+const { Collection } = require('discord.js')
 const { Events } = require('discord.js');
 const { cooldowns } = client;
 
