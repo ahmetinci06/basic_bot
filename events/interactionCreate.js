@@ -34,7 +34,7 @@ module.exports = {
 	}
 		}
 
-	  	timestamps.set(interaction.user.id, now);
+	 timestamps.set(interaction.user.id, now);
    setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
 
 		try {
