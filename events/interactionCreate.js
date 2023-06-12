@@ -1,5 +1,5 @@
 const { Events } = require('discord.js');
-const { cooldowns } = new Client({ intents: [GatewayIntentBits.Guilds] });
+const { cooldowns } = client;
 
 module.exports = {
 	name: Events.InteractionCreate,
