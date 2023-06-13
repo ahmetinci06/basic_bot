@@ -9,6 +9,7 @@ config.json
 
 index_single.js
 index_web.js
+invites.ejs
 
 # Logs
 logs
