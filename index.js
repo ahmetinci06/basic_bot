@@ -5,7 +5,14 @@ const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
 
 //Identifying client
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent,
+		GatewayIntentBits.GuildMembers,
+	],
+});
 module.exports.client = client;
 
 //Dynamic commands
@@ -42,6 +49,25 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
+
+client.on('message', async (message) => {
+  if (message.content === '!inviteall') {
+    // Get an array of all the guilds the bot is in
+    const guilds = client.guilds.cache.array();
+
+    // Loop through each guild and generate an invitation link
+    for (const guild of guilds) {
+      try {
+        const invite = await guild.channels.cache
+          .find((c) => c.type === 'text')
+          .createInvite({ maxUses: 1, unique: true });
+        message.channel.send(`Invite link for ${guild.name}: ${invite.url}`);
+      } catch (error) {
+        console.error(`Failed to create invite for ${guild.name}: ${error}`);
+      }
+    }
+  }
+});
 
 //Bot Token
 client.login(token);

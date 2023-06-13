@@ -5,6 +5,10 @@ package-lock.json
 config.json
 .env
 
+# Other index's
+
+index_single.js
+index_web.js
 
 # Logs
 logs
